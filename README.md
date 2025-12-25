@@ -22,6 +22,7 @@
 
 ## 📁 项目结构
 
+```text
 survey-platform/
 ├── src/main/java/com/example/survey/platform/
 │   ├── controller/    # 控制器
@@ -29,35 +30,28 @@ survey-platform/
 │   │   ├── MessageController.java
 │   │   ├── CaptchaController.java
 │   │   └── LogoutController.java
-│   ├── dao/          # 数据访问接口和实现
+│   ├── dao/           # 数据访问接口和实现
 │   │   ├── UserDao.java
 │   │   ├── MessageDao.java
 │   │   ├── ReplyDao.java
-│   │   └── impl/      # 内存存储实现
-│   ├── model/        # 数据模型
+│   │   └── impl/
+│   ├── model/
 │   │   ├── User.java
 │   │   ├── Message.java
 │   │   └── Reply.java
-│   ├── config/       # 配置类
+│   ├── config/
 │   │   └── AppConfig.java
-│   ├── util/         # 工具类
+│   ├── util/
 │   │   └── CaptchaGenerator.java
 │   └── SurveyPlatformApplication.java
 ├── src/main/resources/
-│   ├── templates/    # Thymeleaf模板文件
-│   │   ├── login.html
-│   │   ├── index.html
-│   │   ├── post_message.html
-│   │   ├── message_detail.html
-│   │   └── error.html
-│   ├── static/css/   # 样式文件
-│   │   └── style.css
+│   ├── templates/
+│   ├── static/css/
 │   └── application.properties
-├── .gitignore
 ├── pom.xml
-├── mvnw
-├── mvnw.cmd
 └── README.md
+```
+
 
 ## 🚀 快速开始
 
