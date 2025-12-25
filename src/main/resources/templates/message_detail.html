@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${message.title} + ' - 帖子详情'">帖子详情</title>
+  <link rel="stylesheet" th:href="@{/static/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <h2 th:text="${message.title}">标题</h2>
+  <p th:utext="${message.content}">内容</p>
+  <small>
+    发布人: <span th:text="${message.sender}">用户</span>
+    时间: <span th:text="${message.datetime}">时间</span>
+  </small>
+
+  <hr/>
+
+  <h3>回复列表</h3>
+  <div class="reply-list">
+    <div th:if="${replies != null and !replies.isEmpty()}">
+      <div th:each="reply : ${replies}" class="reply-item">
+        <p th:utext="${reply.content}">回复内容</p>
+        <small>
+          回复人: <span th:text="${reply.sender}">用户</span>
+          时间: <span th:text="${reply.datetime}">时间</span>
+        </small>
+      </div>
+    </div>
+    <div th:if="${replies == null or replies.isEmpty()}">
+      <p>暂无回复</p>
+    </div>
+  </div>
+
+  <hr/>
+
+  <h3>回复帖子</h3>
+  <form th:action="@{/message/reply}" method="post">
+    <input type="hidden" name="messageId" th:value="${message.id}"/>
+    <textarea name="content" rows="5" cols="60" required></textarea><br/><br/>
+    <button type="submit">回复</button>
+  </form>
+
+  <br/>
+  <a th:href="@{/message/list}">返回列表</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>错误 - 在线问答平台</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>错误提示</h2>
+    <p style="color:red" th:text="${errorMessage}">错误信息</p>
+    <a th:href="@{/message/list}">返回首页</a>
+</div>
+</body>
+</html>

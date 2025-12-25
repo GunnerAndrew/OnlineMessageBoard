@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>发起新讨论</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>发起新讨论</h2>
+
+    <form th:action="@{/message/post}" method="post">
+        <label>标题:</label><br/>
+        <input type="text" name="title" required style="width:400px;"><br/><br/>
+
+        <label>内容:</label><br/>
+        <textarea name="content" rows="8" cols="60" required></textarea><br/><br/>
+
+        <button type="submit">发布</button>
+    </form>
+
+    <br/>
+    <a th:href="@{/message/list}">返回列表</a>
+</div>
+</body>
+</html>

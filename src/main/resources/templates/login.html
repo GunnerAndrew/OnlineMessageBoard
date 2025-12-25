@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>登录 - 在线问答平台</title>
+  <link rel="stylesheet" th:href="@{/static/css/style.css}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>用户登录</h2>
+  <p>测试用户1：alice,密码123  测试用户2：tom,密码123  测试用户3：bob,密码123</p>
+
+  <form id="loginForm">
+    <label>用户名:</label>
+    <input type="text" name="username" required>
+    <label>密码:</label>
+    <input type="password" name="password" required>
+    <label>验证码:</label>
+    <input type="text" name="captcha" required>
+    <img id="captchaImg" th:src="@{/captcha}" alt="验证码" onclick="refreshCaptcha()">
+    <br>
+    <button type="button" onclick="submitLogin()">登录</button>
+  </form>
+
+  <div id="errorMsg" style="color:red; display:none;"></div>
+</div>
+
+<script>
+  function refreshCaptcha() {
+    document.getElementById('captchaImg').src = '/captcha?' + new Date().getTime();
+  }
+
+  function submitLogin() {
+    const formData = {
+      username: $('input[name="username"]').val(),
+      password: $('input[name="password"]').val(),
+      captcha: $('input[name="captcha"]').val()
+    };
+
+    $.post('/login', formData)
+            .done(function(response) {
+              if (response.success) {
+                window.location.href = '/message/list';
+              } else {
+                $('#errorMsg').text(response.message).show();
+                refreshCaptcha();
+              }
+            })
+            .fail(function() {
+              $('#errorMsg').text('登录失败，请重试').show();
+            });
+  }
+</script>
+</body>
+</html>

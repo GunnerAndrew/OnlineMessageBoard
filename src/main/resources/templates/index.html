@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>讨论列表</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>讨论列表</h2>
+    <a th:href="@{/message/post}"><button>发起新讨论</button></a>
+
+    <div class="message-list">
+        <div th:if="${messages != null and !messages.isEmpty()}">
+            <div th:each="msg : ${messages}" class="message-item">
+                <a th:href="@{/message/detail(id=${msg.id})}">
+                    <h3 th:text="${msg.title}">标题</h3>
+                </a>
+                <p th:utext="${msg.content}">内容</p>
+                <small>
+                    发布人: <span th:text="${msg.sender}">用户</span>
+                    时间: <span th:text="${msg.datetime}">时间</span>
+                </small>
+            </div>
+        </div>
+        <div th:if="${messages == null or messages.isEmpty()}">
+            <p>暂无讨论帖</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
